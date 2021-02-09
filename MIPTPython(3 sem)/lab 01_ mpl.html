@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://judge2.vdi.mipt.ru/ejudge/lab_01_mpl/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>lab 01: mpl</title>
+        <meta name="description" content="Basic Ready-to-Use CSS Styles">
+        <meta name="keywords" content="css, styles, snippets, box-shadow, embossed, gradients, css3, links, inputs, metro">
+        <meta name="author" content="Codrops">
+        <link rel="shortcut icon" href="http://judge2.vdi.mipt.ru/ejudge/favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="./lab 01_ mpl_files/style.css">
+        <!--[if lt IE 9]>
+            <script src="js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+			<header>
+				<h1>Hello Matplotlib</h1>
+			</header>
+			
+			<section class="main">
+				<div class="example-wrapper clearfix">
+					<h3>Вводная</h3>
+					<div class="demo-wrapper">
+						<p>Запись стрима про Matplotlib <a href="https://youtu.be/4uMZmShVfpA" class="inline-link-2">здесь</a>.</p>
+						<p>А <a href="https://github.com/avasyukov/python-3rd-term/tree/master/08" class="inline-link-2">здесь</a> - примеры кода, которые были во время стрима.</p>
+<br>
+						<p>Документация Matplotlib огромна, и это нормально. Неплохие входные точки в неё:</p>
+<div style="padding-left:20px;">
+<ul>
+<li><a href="https://matplotlib.org/tutorials/introductory/pyplot.html" class="inline-link-2">базовый туториал</a></li>
+<li><a href="https://matplotlib.org/3.3.2/tutorials/introductory/usage.html" class="inline-link-2">немного анатомии и изнанки</a></li>
+<li><a href="https://matplotlib.org/3.3.2/gallery/index.html" class="inline-link-2">галерея примеров</a></li>
+</ul>
+</div>
+<p>Если вдруг нет сети, то локальная копия документации <a href="http://judge2.vdi.mipt.ru/ejudge/lab_01_mpl/Matplotlib.pdf" class="inline-link-2">здесь</a>. В этом огромном pdf не очень хорошее оглавление, увы. Отправные точки - разделы 2.1.1, 2.1.2 и 2.1.3 в нём.</p>
+
+<br>
+
+<p>Это лаба по Matplotlib. Смысл слова "лаба" в данном случае - вам выдаётся вводная, стартовые примеры кода, ссылки на документацию и несколько макро-задач. В задачах нет слишком строгих условий, нет единственно верных решений, есть некоторый простор для творчества. Для решения задач потребуется почитать документацию и подумать. Так как лаба про Matplotlib, то задачи соответственные - нужно посмотреть на данные, придумать их уместную визулизацию, после чего найти способ реализовать её.</p>
+					</div>
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 1</h3>
+					<div class="demo-wrapper">
+<p>Когда-то давным-давно в первом семестре в контестах была задача, которую никто так и не решил. Она была про Деда Мороза, который запускает фейерверки. У него есть точки, из которых должно быть видно фейерверки, доступные виды фейерверков (с разной ценой и радиусом <s>поражения</s> видимости), бюджет на всё мероприятие. Нужно было сформировать программу запусков фейерверков, чтобы из каждой точки был виден хотя бы один фейерверк.</p>
+<br>
+<p>Давайте внезапно вернёмся к этой задаче. Решать не будем. Но попробуем визуализировать данные тестов. Ведь если решать что-то такое, то очень хочется глазами видеть распределение точек, которые надо накрыть.</p>
+<br>
+<p>Вот <a href="http://judge2.vdi.mipt.ru/ejudge/lab_01_mpl/dead_moroz.zip" class="inline-link-2">здесь</a> лежит набор файлов с тестовыми данными. В каждом файле в первой строке целое число N - количество точек, далее N строк, в каждой 2 числа с плавающей точкой через пробел - координаты X и Y точки. Далее ещё разные данные, но нас они сейчас не волнуют.</p>
+<br>
+<p>Задача - считать и визуализировать тестовые наборы данных. Требования:</p>
+<div style="padding-left:20px;">
+<ol>
+<li>точки должны быть нормально различимы глазами,</li>
+<li>общая геометрия области должна быть передана (например, длинная область должна быть длинной, а не растянутой в квадрат).</li>
+</ol>
+</div>
+<br>
+<p>Пример того, как может выглядеть результат (это один из файлов, их там несколько):</p>
+<img src="./lab 01_ mpl_files/003.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+					</div>
+
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 2</h3>
+					<div class="demo-wrapper">
+<p>У вас есть набор снятых показаний, которые описывают эволюцию некоторого процесса во времени. Состояние в каждый момент времени представляет из себя график в осях OXY.</p>
+<br>
+<p>Каждый график задан поточечно. Все N кадров процесса хранятся в одном файле, в котором 2N строк. Первая строка - набор x-координат точек, вторая строка - набор y-координат этих точек. И так далее каждая пара строк задаёт точки очередного кадра. Собственно файл <a href="http://judge2.vdi.mipt.ru/ejudge/lab_01_mpl/frames.dat" class="inline-link-2">здесь</a>.</p>
+<br>
+<p>Задача - считать и отрисовать весь процесс покадрово. Требования:</p>
+<div style="padding-left:20px;">
+<ol>
+<li>при взгляде на кадр должно быть понятно, что это за кадр (первый? пятый? или какой?),</li>
+<li>пределы по X и по Y должны быть одинаковые на всех кадрах (чтобы можно было наглядно сравнивать соседние кадры между собой),</li>
+<li>должна быть координатная сетка - достаточно плотная, чтобы по ней удобно было смотреть значения в любой точке, но всё-таки читаемая и не загромождающая основной график,</li>
+<li>будет это один мега-график, набор удобо поименованных png для листания или gif-ка - зависит от вашей фантазии и чувства прекрасного.</li>
+</ol>
+</div>
+<br>
+<p>Пример того, как может выглядеть результат:</p>
+<img src="./lab 01_ mpl_files/frames.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+					</div>
+
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 3</h3>
+					<div class="demo-wrapper">
+<p>Однажды один факультет сдавал один зачёт. Вот <a href="http://judge2.vdi.mipt.ru/ejudge/lab_01_mpl/students.csv" class="inline-link-2">здесь</a> лежит файлик с результатами. В каждой строке файла - результат одного студента, три поля через точку с запятой. Первое поле - кому сдавал студент. Второе поле - номер группы студента. Третье поле - оценка. (Имён студентов в файле нет. Потому что к задаче они не относятся.)</p>
+<br>
+<p>Задача - постройте графики распределения оценок по препам и по группам. Формат графика - любой достаточно наглядный (stacked bar chart, grouped bar chart, pie chart, иное - зависит от вашей фантазии).</p>
+<br>
+<p>Пример того, как может выглядеть результат (можно было бы и красивее, но в таком виде требования тоже выполнены):</p>
+<img src="./lab 01_ mpl_files/students.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+<br>
+<p><em>Дополнительное задание - сгенерируйте предположения, какие препы самые халявные и самые нехалявные, а также какая группа самая раздолбайская.</em></p>
+					</div>
+
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+
+			</section>
+        </div>
+    
+
+</body></html>

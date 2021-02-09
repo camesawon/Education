@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://judge2.vdi.mipt.ru/ejudge/lab_02_numpy/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>lab 02: numpy</title>
+        <!--meta name="description" content="Basic Ready-to-Use CSS Styles" /-->
+        <meta name="keywords" content="css, styles, snippets, box-shadow, embossed, gradients, css3, links, inputs, metro">
+        <meta name="author" content="Codrops">
+        <link rel="shortcut icon" href="http://judge2.vdi.mipt.ru/ejudge/favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="./lab 02_ numpy_files/style.css">
+        <!--[if lt IE 9]>
+            <script src="js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+			<header>
+				<h1>Hello NumPy</h1>
+			</header>
+			
+			<section class="main">
+				<div class="example-wrapper clearfix">
+					<h3>Вводная</h3>
+					<div class="demo-wrapper">
+						<p>Запись стрима про NumPy <a href="https://youtu.be/TylPsDR4KT8" class="inline-link-2">здесь</a>.</p>
+						<p>А <a href="https://github.com/avasyukov/python-3rd-term/tree/master/10" class="inline-link-2">здесь</a> - примеры кода, которые были во время стрима.</p>
+						<p>Ещё есть запись стрима про производительность NumPy и сюрпризы с ней при неаккуратном обращении - <a href="https://youtu.be/jEs2F0xdC7k" class="inline-link-2">здесь</a>. Это дополнительный материал (но вообще-то важный).</p>
+						<p>Примеры кода про производительность <a href="https://github.com/avasyukov/python-3rd-term/tree/master/09" class="inline-link-2">здесь</a>.</p>
+<br>
+						<p>Документация NumPy: <a href="https://numpy.org/doc/stable/" class="inline-link-2">здесь.</a></p>
+<!--p>Если вдруг нет сети, то локальная копия документации <a href="Matplotlib.pdf" class="inline-link-2">здесь</a>. В этом огромном pdf не очень хорошее оглавление, увы. Отправные точки - разделы 2.1.1, 2.1.2 и 2.1.3 в нём.</p-->
+
+
+<br>
+
+<p>Это лаба по NumPy. Смысл слова "лаба" в данном случае - вам выдаётся вводная, стартовые примеры кода, ссылки на документацию и несколько макро-задач. В задачах нет слишком строгих условий, нет единственно верных решений, есть некоторый простор для творчества. Для решения задач потребуется почитать документацию и подумать.</p>
+					</div>
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 1</h3>
+					<div class="demo-wrapper">
+<p>У вас есть картинки поверхности Луны. Они чёрно-белые, и это нормально - такая была камера. К сожалению, качество их не очень - контраст страдает, вместо честных градаций от чёрного до белого камера зафиксировала 42 оттенка серого. Давайте улучшим картинки, чтобы они более внятно воспринимались глазом.</p>
+<br>
+<p>Картинки <a href="http://judge2.vdi.mipt.ru/ejudge/lab_02_numpy/lunar_images.zip" class="inline-link-2">здесь</a>.</p>
+<br>
+<p>Задача - переинтерполировать картинки, использовав весь доступный диапазон для улучшения контраста. Логика преобразования такая:</p>
+<div style="padding-left:20px;">
+<ol>
+<li>чёрно-белая картинка - это по сути простой 2D-массив, каждый элемент которого представляет собой 1 пиксель картинки (с цветными всё несколько сложнее),</li>
+<li>каждый пиксель может иметь значения от 0 до 255,</li>
+<li>реально у нас на этих нерезких картинках все пиксели находятся где-то внутри небольшого диапазона значений (условно, от 10 до 50 вместо полного спектра),</li>
+<li>поэтому нужно считать картинку и аккуратно линейно "растянуть" диапазон, минимальное значение на исходной картинки должно получить значение 0 в выходном изображении, а максимальное на исходной - 255 на выходе.</li>
+</ol>
+</div>
+<br>
+<p><strong>Внимание!</strong> Если когда-нибудь у вас в руках окажутся настоящие картинки, только что полученные с Луны, ни в коем случае не делайте так! Вернее, всегда сохраняйте оригиналы с точностью до последнего бита. И чётко сообщайте человечеству, где здесь исходные сырые данные из космоса, а где результат творческих преобразований и улучшений. Ну и не храните, конечно, столь ценные данные в форматах со сжатием и потерями, таких как jpg.</p>
+<br>
+<p>Пример того, как может выглядеть результат (это один из файлов до и после, их там несколько):</p>
+<img src="./lab 02_ numpy_files/lunar01_raw.jpg" style="height: auto; width: auto; max-width: 400px; max-height: 400px;">
+<img src="./lab 02_ numpy_files/lunar01_processed.jpg" style="height: auto; width: auto; max-width: 400px; max-height: 400px;">
+<br>
+<br>
+<br>
+<p>Для чтения и записи файлов можно поступить примерно так:</p>
+					</div>
+					<pre class="code-wrapper">from PIL import Image
+
+# считаем картинку в numpy array
+img = Image.open(file_path)
+data = np.array(img)
+
+# ... логика обработки
+
+# запись картинки после обработки
+res_img = Image.fromarray(updated_data)
+res_img.save(new_file_path)
+					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 2</h3>
+					<div class="demo-wrapper">
+<p>У вас есть набор показаний, снятых с датчиков. Предполагается, что вообще-то в данных есть какие-то осмысленные сигналы, по которым можно проследить зависимости. К сожалению, данные очень сильно зашумлены.</p>
+<br>
+<p>К счастью, со случайными шумами можно неплохо бороться, усредняя сигнал по времени. Этим и предстоит заняться.</p>
+<br>
+<p>Данные <a href="http://judge2.vdi.mipt.ru/ejudge/lab_02_numpy/signals.zip" class="inline-link-2">здесь</a>. В каждом файле просто набор значений, полученных в последовательные моменты времени.</p>
+<br>
+<p>Задача - применить к данным фильтр, отрисовать исходные и отфильтрованные данные. Логика фильтра следующая:</p>
+<div style="padding-left:20px;">
+<ol>
+<li>будем использовать простое скользящее среднее с шагом 10,</li>
+<li>смотреть будем только назад по времени,</li>
+<li>стартовые точки сгладим максимально доступным образом.</li>
+</ol>
+</div>
+<br>
+<p>То есть 0-вое показание остаётся просто собой, 1-ое показание становится средним 0-го и 1-го, 2-ое показание становится средним показаний от 0-го до 2-го и т.д. Показание N становится средним показаний от N-9 до N включительно.</p>
+<br>
+<p>Пример того, как может выглядеть результат:</p>
+<img src="./lab 02_ numpy_files/signal02.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+					</div>
+
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 3</h3>
+					<div class="demo-wrapper">
+<p>Некоторый процесс описывается следующим уравнением:</p>
+<img src="./lab 02_ numpy_files/eq.png">
+<p>В этом уравнении u(x)^n - функция u в момент времени n. Фактически задана формула, как от момента времени n перейти к моменту времени n+1.</p>
+<p>Функция задана поточечно. Её начальный вид можно считать из <a href="http://judge2.vdi.mipt.ru/ejudge/lab_02_numpy/start.dat" class="inline-link-2">этого файла</a>. Примерный вид начального состояния:</p>
+<img src="./lab 02_ numpy_files/start.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+<p>Матрица A в этой записи имеет вот такой вид:</p>
+<img src="./lab 02_ numpy_files/matrix.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+<p>То есть на главной диагонали расположены элементы 1, с циклическим сдвигом влево на один элемент от главной диагонали расположены -1, все остальные элементы 0.</p>
+<br>
+<p>Посчитайте и визуализируйте 255 шагов по времени этого процесса.</p>
+<br>
+<p>Пример того, как может выглядеть результат:</p>
+<img src="./lab 02_ numpy_files/dynamic.gif" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+					</div>
+
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+
+			</section>
+        </div>
+    
+
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://judge2.vdi.mipt.ru/ejudge/lab_03_pandas/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>lab 03: pandas</title>
+        <!--meta name="description" content="Basic Ready-to-Use CSS Styles" /-->
+        <meta name="keywords" content="css, styles, snippets, box-shadow, embossed, gradients, css3, links, inputs, metro">
+        <meta name="author" content="Codrops">
+        <link rel="shortcut icon" href="http://judge2.vdi.mipt.ru/ejudge/favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="./lab 03_ pandas_files/style.css">
+        <!--[if lt IE 9]>
+            <script src="js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+			<header>
+				<h1>Hello pandas</h1>
+			</header>
+			
+			<section class="main">
+				<div class="example-wrapper clearfix">
+					<h3>Вводная</h3>
+					<div class="demo-wrapper">
+						<p>Запись стрима про pandas <a href="https://youtu.be/bec1AwaFb0E" class="inline-link-2">здесь</a>.</p>
+						<p>А <a href="https://github.com/avasyukov/python-3rd-term/tree/master/11" class="inline-link-2">здесь</a> - примеры кода, которые были во время стрима.</p>
+						<p>Точка входа в документацию, которая покрывает практически всё, что может потребоваться, <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html" class="inline-link-2">здесь.</a> (Гайд обещает "pandas за 10 минут". Не верьте - там минимум на час.)</p>
+						<br>
+						<p>Несложный гайд по pandas в примерах и задачах: <a href="https://www.kaggle.com/learn/pandas" class="inline-link-2">здесь</a>.</p>
+						<p>Более жёсткий и глубокий гайд <a href="https://tomaugspurger.github.io/modern-1-intro.html" class="inline-link-2">здесь</a>.</p>
+						<p>Полная документация pandas: <a href="https://pandas.pydata.org/docs/" class="inline-link-2">здесь.</a></p>
+						<p>Внезапно есть фундаментальная книга по теме: Python и анализ данных (Уэс Маккини, 2020).</p>
+						<br>
+
+<!--p>Если вдруг нет сети, то локальная копия документации <a href="Matplotlib.pdf" class="inline-link-2">здесь</a>. В этом огромном pdf не очень хорошее оглавление, увы. Отправные точки - разделы 2.1.1, 2.1.2 и 2.1.3 в нём.</p-->
+
+
+<br>
+
+<p>Это лаба по pandas. Смысл слова "лаба" в данном случае - вам выдаётся вводная, стартовые примеры кода, ссылки на документацию и несколько макро-задач. В задачах нет слишком строгих условий, нет единственно верных решений, есть некоторый простор для творчества. Для решения задач потребуется почитать документацию и подумать.</p>
+					</div>
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 1</h3>
+					<div class="demo-wrapper">
+<p>В ваши руки попали данные о платежах некоторой глубоко законспирированной организации - <a href="http://judge2.vdi.mipt.ru/ejudge/lab_03_pandas/transactions.csv" class="inline-link-2">вот они</a>. Судя по всему, поля в данных следует воспринимать предельно просто: CONTRACTOR - кому платёж, STATUS - статус операции, SUM - сумма операции.
+Давайте попробуем посмотреть, что есть в этих данных.</p>
+<br>
+<p>Задача #1 - найдите 3 самых крупных платежа из реально проведённых (статус OK).</p>
+<p>Задача #2 - определите полную сумму реально проведённых платежей в адрес Umbrella, Inc.</p>
+					</div>
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 2</h3>
+					<div class="demo-wrapper">
+<p>У вас есть набор данных о грузовых рейсах - <a href="http://judge2.vdi.mipt.ru/ejudge/lab_03_pandas/flights.csv" class="inline-link-2">вот он</a>.
+Поля в данных: CARGO - авиакомпания, PRICE - стоимость груза на борту, WEIGHT - масса груза на борту.</p>
+<br>
+<p>Задача: посчитайте, сколько рейсов выполнила каждая авиакомпания, полную стоимость и полную массу перевезённых ей грузов.
+Пример того, как может выглядеть результат:</p>
+					</div>
+					<img src="./lab 03_ pandas_files/flights.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 3</h3>
+					<div class="demo-wrapper">
+<p>Однажды один факультет 1-го сентября 1-го курса писал входное тестирование по информатике. Вот <a href="http://judge2.vdi.mipt.ru/ejudge/lab_03_pandas/students.zip" class="inline-link-2">здесь</a> лежит архив с данными. В архиве xlsx с данными групп от деканата и html-ная таблица результатов из ejudge. (Данные почти настоящие - в жизни они более сумбурные и грязные, двумя файликами дело не ограничивается.)
+В xlsx-файле логины студентов (поле login), номера их факультетских групп (поле group_faculty), номера их групп после распределения на группы по информатике (поле group_out). Как воспринимать таблицу результатов ejudge, наверное, отдельно рассказывать не надо. Скажем только, что в ней по счастью используются те же логины (а не ФИО с опечатками).</p>
+<br>
+<p>Задача #1 - постройте графики среднего количества решённых задач (а) по факультетским группам, (б) по группам по информатике. Формат графика - любой достаточно наглядный. Пример того, как может выглядеть результат:</p>
+<img src="./lab 03_ pandas_files/students.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+<br>
+<p>Задача #2 - определите, из каких факультетских групп пришли и в какие группы по информатике попали люди, которые смогли пройти более одного теста в хотя бы одной из двух последних задач. (Задачи G и H в таблице, каждый тест даёт 10 баллов.) Рисовать график не обязательно, можно просто цифры посчитать.</p>
+<br>
+<p><em>Дополнительное задание - найдите лёгкие проблемы и нестыковки в исходных данных. Они не мешают решить две поставленные задачи, но они там есть.</em></p>
+					</div>
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+			</section>
+        </div>
+    
+
+</body></html>

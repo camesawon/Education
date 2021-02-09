@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://judge2.vdi.mipt.ru/ejudge/lab_04_scipy_sympy/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>lab 04: scipy and sympy</title>
+        <!--meta name="description" content="Basic Ready-to-Use CSS Styles" /-->
+        <meta name="keywords" content="css, styles, snippets, box-shadow, embossed, gradients, css3, links, inputs, metro">
+        <meta name="author" content="Codrops">
+        <link rel="shortcut icon" href="http://judge2.vdi.mipt.ru/ejudge/favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="./lab 04_ scipy and sympy_files/style.css">
+        <!--[if lt IE 9]>
+            <script src="js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+			<header>
+				<h1>Hello scipy and sympy</h1>
+			</header>
+			
+			<section class="main">
+				<div class="example-wrapper clearfix">
+					<h3>Вводная</h3>
+					<div class="demo-wrapper">
+<p>Следует сразу сказать, что scipy and sympy огромны. Знать их целиком, наверное, невозможно. Да и не нужно. Нужно находить подходящие кусочки, когда возникла конкретная задача. Именно об этом сегодняшняя лаба.</p>
+<br>
+<p>Документация SymPy: <a href="https://docs.sympy.org/latest/index.html" class="inline-link-2">здесь.</a></p>
+<p>Документация SciPy: <a href="https://docs.scipy.org/doc/scipy/reference/" class="inline-link-2">здесь.</a></p>
+<br>
+
+<p>Смысл слова "лаба" в данном случае - вам выдаётся вводная, стартовые примеры кода, ссылки на документацию и несколько макро-задач. В задачах нет слишком строгих условий, нет единственно верных решений, есть некоторый простор для творчества. Для решения задач потребуется почитать документацию и подумать.</p>
+					</div>
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 1</h3>
+					<div class="demo-wrapper">
+<p>Задана матрица 9х9:</p>
+<img src="./lab 04_ scipy and sympy_files/matrix.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+<br>
+<p>Найдите её собственные значения в символьном виде.</p>
+					</div>
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 2</h3>
+					<div class="demo-wrapper">
+<p>В файле задана система линейных уравнений вида Ax = b. Формат файла: в первой строке N - размерность вектора неизвестных; далее N строк с N значений через пробел в каждой - матрица A; далее ещё одна строка с N значений через пробел - вектор b.</p>
+<p>Решите эту систему, результат нарисуйте barchart-ом, где i-ый столбик - значение соответственного x[i].</p>
+<p>Для отладки есть маленькая система - <a href="http://judge2.vdi.mipt.ru/ejudge/lab_04_scipy_sympy/small.txt" class="inline-link-2">вот она</a>. Результат для неё будет выглядить примерно так:</p>
+<img src="./lab 04_ scipy and sympy_files/small.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+<p>После отладки на маленькой системе решите настоящую - <a href="http://judge2.vdi.mipt.ru/ejudge/lab_04_scipy_sympy/large.txt" class="inline-link-2">вот эту</a>.</p>
+					</div>
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+				<div class="example-wrapper clearfix">
+					<h3>Эпизод 3</h3>
+					<div class="demo-wrapper">
+<p>Задан дифур:</p>
+<img src="./lab 04_ scipy and sympy_files/eq.png" style="height: auto; width: auto; max-width: 800px; max-height: 400px;">
+<br>
+<p>Решите его два раза - один раз символьно SymPy-ем, второй раз численно SciPy-ем.</p>
+<br>
+<p>Выведите решение, найденное SymPy-ем. Постройте графики: (1) обоих решений на отрезке [0; 10], (2) разности решений SymPy-ем и SciPy-ем на этом же отрезке.</p>
+					</div>
+					<pre class="code-wrapper">					</pre>
+				</div>
+
+			</section>
+        </div>
+    
+
+</body></html>
